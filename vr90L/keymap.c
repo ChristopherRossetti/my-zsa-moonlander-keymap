@@ -51,6 +51,45 @@ enum tap_dance_codes {
 #define DUAL_FUNC_23 LT(14, KC_T)
 #define DUAL_FUNC_24 LT(9, KC_W)
 
+
+
+
+
+
+
+
+
+
+
+
+
+// Custom QMK here
+socd_cleaner_t socd_opposing_pairs[] = {
+  {{KC_SPACE, KC_D}, SOCD_CLEANER_LAST},
+  {{KC_S, KC_F}, SOCD_CLEANER_LAST},
+}
+//end of custom QMK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
     TD(DANCE_0),    DUAL_FUNC_0,    DUAL_FUNC_1,    DUAL_FUNC_2,    DUAL_FUNC_3,    DUAL_FUNC_4,    DUAL_FUNC_5,                                    TD(DANCE_5),    DUAL_FUNC_8,    DUAL_FUNC_9,    DUAL_FUNC_10,   DUAL_FUNC_11,   DUAL_FUNC_12,   DUAL_FUNC_13,   
@@ -897,8 +936,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 
-// Custom QMK here
-socd_cleaner_t socd_opposing_pairs[] = {
-  {{KC_SPACE, KC_D}, SOCD_CLEANER_LAST},
-  {{KC_S, KC_F}, SOCD_CLEANER_LAST},
-}
