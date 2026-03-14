@@ -868,4 +868,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 // Custom QMK here
-// test merda
+socd_cleaner_t socd_opposing_pairs[] = {
+  {{KC_SPACE, KC_D}, SOCD_CLEANER_LAST},
+  {{KC_S, KC_F}, SOCD_CLEANER_LAST},
+};
