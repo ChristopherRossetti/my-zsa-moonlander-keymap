@@ -9,6 +9,8 @@
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
   ST_MACRO_0,
+  SOCD_UP,
+  SOCD_LAST,
 };
 
 
@@ -63,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_E,           KC_TRANSPARENT, KC_TRANSPARENT, KC_LCBR,                                        TO(0),          KC_TRANSPARENT, KC_U,           KC_I,           KC_O,           KC_TRANSPARENT, KC_PLUS,        
     KC_TRANSPARENT, KC_A,           KC_S,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_RCBR,                                                                        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_PAGE_UP,     KC_MINUS,       
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, SOCD_LAST, SOCD_UP, SOCDTOG, 
     KC_TRANSPARENT, KC_LEFT_CTRL,   KC_TRANSPARENT,                 KC_TRANSPARENT, KC_DELETE,      KC_TRANSPARENT
   ),
   [2] = LAYOUT_moonlander(
@@ -872,3 +874,24 @@ socd_cleaner_t socd_opposing_pairs[] = {
   {{KC_SPACE, KC_D}, SOCD_CLEANER_LAST},
   {{KC_S, KC_F}, SOCD_CLEANER_LAST},
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  switch (keycode) {
+    case SOCD_LAST:
+      if (record->event.pressed) {
+        socd_opposing_pairs[0].resolution = SOCD_CLEANER_LAST;
+        socd_opposing_pairs[1].resolution = SOCD_CLEANER_LAST;
+      }
+      break;
+
+    case SOCD_UP:
+      if (record->event.pressed) {
+        socd_opposing_pairs[0].resolution = SOCD_CLEANER_0_WINS;
+        socd_opposing_pairs[1].resolution = SOCD_CLEANER_NEUTRAL;
+      }
+      break;
+
+    // Other macros...
+  }
+  return true;
+}
