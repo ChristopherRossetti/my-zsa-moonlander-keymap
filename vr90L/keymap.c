@@ -492,35 +492,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_0) SS_TAP(X_KP_0) ));
     }
     break;
-
-
-
-
-
-
-
-
-    // Custom QMK
-    case SOCD_LAST:
-      if (record->event.pressed) {
-        socd_opposing_pairs[0].resolution = SOCD_CLEANER_LAST;
-        socd_opposing_pairs[1].resolution = SOCD_CLEANER_LAST;
-      }
-      break;
-
-    case SOCD_UP:
-      if (record->event.pressed) {
-        socd_opposing_pairs[0].resolution = SOCD_CLEANER_0_WINS;
-        socd_opposing_pairs[1].resolution = SOCD_CLEANER_NEUTRAL;
-      }
-      break;
-    // End of custom QMK
-
-
-
-
-
-
     case DUAL_FUNC_0:
       if (record->tap.count > 0) {
         if (record->event.pressed) {
@@ -934,6 +905,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             rgblight_mode(1);
         }
         return false;
+
+    // Custom QMK
+    case SOCD_LAST:
+      if (record->event.pressed) {
+        socd_opposing_pairs[0].resolution = SOCD_CLEANER_LAST;
+        socd_opposing_pairs[1].resolution = SOCD_CLEANER_LAST;
+      }
+      break;
+
+    case SOCD_UP:
+      if (record->event.pressed) {
+        socd_opposing_pairs[0].resolution = SOCD_CLEANER_0_WINS;
+        socd_opposing_pairs[1].resolution = SOCD_CLEANER_NEUTRAL;
+      }
+      break;
+    // End of custom QMK
+    
   }
   return true;
 }
